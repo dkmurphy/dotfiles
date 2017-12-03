@@ -137,6 +137,12 @@ set fileencoding=utf-8
 " french accents
 set encoding=utf-8
 
+" disable arrow keys to force hjkl navigation
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
 " location for swap files; because of trailing //
 " the swap file name will be built from the complete path to the file with
 " all path separators substituted to percent '%' signs
