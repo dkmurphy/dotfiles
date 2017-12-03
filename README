@@ -1,0 +1,34 @@
+# install xcape
+sudo apt-get install xcape
+
+# make short-pressed Ctrl behave like Escape:
+xcape -e 'Control_L=Escape'
+
+# make CapsLock behave like Ctrl (this is made permanent with a change to /etc/default/keyboard):
+setxkbmap -option ctrl:nocaps
+
+# Edit /etc/default/keyboard:
+cat <<EOF
+# Check /usr/share/doc/keyboard-configuration/README.Debian for
+# documentation on what to do after having modified this file.
+
+# The following variables describe your keyboard and can have the same
+# values as the XkbModel, XkbLayout, XkbVariant and XkbOptions options
+# in /etc/X11/xorg.conf.
+
+XKBMODEL="pc105"
+XKBLAYOUT="us"
+XKBVARIANT=""
+XKBOPTIONS="ctrl:nocaps"
+
+# If you don't want to use the XKB layout on the console, you can
+# specify an alternative keymap.  Make sure it will be accessible
+# before /usr is mounted.
+# KMAP=/etc/console-setup/defkeymap.kmap.gz
+EOF
+
+# After modifying /etc/default/keyboard, you can apply the changes to the linux console by running setupcon.
+# If X is configured to use that file too, then the changes will become visible to X only if
+# udevadm trigger –subsystem-match=input –action=change
+# This has to be done from a console terminal or will fail with
+# We are not on the Linux console, the console is left unconfigured.
