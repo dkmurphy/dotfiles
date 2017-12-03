@@ -7,6 +7,10 @@ xcape -e 'Control_L=Escape'
 # make CapsLock behave like Ctrl (this is made permanent with a change to /etc/default/keyboard):
 setxkbmap -option ctrl:nocaps
 
+# for Gnome, should instead do
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us')]"
+gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+
 # Edit /etc/default/keyboard:
 cat <<EOF
 # Check /usr/share/doc/keyboard-configuration/README.Debian for
