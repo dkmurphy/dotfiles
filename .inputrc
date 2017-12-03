@@ -1,0 +1,3 @@
+# Set editing mode to vi instead of the default emacs
+# $ set -o emacs
+set editing-mode vi
