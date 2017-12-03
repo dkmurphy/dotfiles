@@ -1,13 +1,3 @@
-## make CapsLock behave like Ctrl:
-#setxkbmap -option ctrl:nocaps
-## make short-pressed Ctrl behave like Escape if xcape installed:
-#command -v xcape >/dev/null 2>&1 && xcape -e 'Control_L=Escape'
-
-# make CapsLock behave like Ctrl:
-setxkbmap -option 'caps:ctrl_modifier'
-# make short-pressed Ctrl behave like Escape if xcape installed:
-command -v xcape >/dev/null 2>&1 && xcape -e 'Caps_Lock=Escape'
-
 # History configuration
 # # don't put duplicate lines or lines starting with space in the history. 
 # # See bash(1) for more options 
