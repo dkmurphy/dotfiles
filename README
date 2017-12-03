@@ -1,15 +1,30 @@
+# For key mapping
+#################
+
 # install xcape
 sudo apt-get install xcape
 
 # make short-pressed Ctrl behave like Escape:
 xcape -e 'Control_L=Escape'
 
-# make CapsLock behave like Ctrl (this is made permanent with a change to /etc/default/keyboard):
-setxkbmap -option ctrl:nocaps
-
-# for Gnome, should instead do
+# for Gnome, should also do
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us')]"
 gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+
+# make CapsLock behave like Ctrl (this is also made permanent with the above change to /etc/default/keyboard):
+setxkbmap -option ctrl:nocaps
+sudo dpkg-reconfigure keyboard-configuration
+
+cat <<<EOF
+Section "InputClass"
+    Identifier "system-keyboard"
+    MatchIsKeyboard "on"
+    Option "XkbLayout" "us"
+    Option "XkbModel" "pc105"
+    Option "XkbOptions" "ctrl:nocaps"
+EndSection
+EOF
+# /usr/share/X11/xorg.conf.d/10-keyboard.conf instead of /etc/X11/xorg.conf.d/10-keyboard.conf
 
 # Edit /etc/default/keyboard:
 cat <<EOF
@@ -36,3 +51,8 @@ EOF
 # udevadm trigger –subsystem-match=input –action=change
 # This has to be done from a console terminal or will fail with
 # We are not on the Linux console, the console is left unconfigured.
+
+# actually none of these are permanent so just going to use .bashrc
+
+
+
