@@ -1,4 +1,5 @@
-# History configuration 
+# History configuration
+HISTORY_CONFIGURATION_COMMAND="history -a; history -c; history -r"
 # # don't put duplicate lines or lines starting with space in the history. 
 # # See bash(1) for more options 
 # HISTCONTROL=ignoreboth 
@@ -12,7 +13,7 @@ HISTFILESIZE=-1
  
 # precmd_function needed due to Skippy breaking it 
 # so instead of 
-## PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND" 
+PROMPT_COMMAND="${HISTORY_CONFIGURATION_COMMAND} $PROMPT_COMMAND" 
 # have to do 
-function prompt_command_precmd_function() { history -a; history -c; history -r; } 
+function prompt_command_precmd_function() { "${HISTORY_CONFIGURATION_COMMAND}" } 
 precmd_functions+=(prompt_command_precmd_function) 
