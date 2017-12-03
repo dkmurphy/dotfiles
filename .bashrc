@@ -13,7 +13,7 @@ HISTFILESIZE=-1
  
 # precmd_function needed due to Skippy breaking it 
 # so instead of 
-PROMPT_COMMAND="${HISTORY_CONFIGURATION_COMMAND} $PROMPT_COMMAND" 
+PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND" 
 # have to do 
-function prompt_command_precmd_function() { "${HISTORY_CONFIGURATION_COMMAND}" } 
-precmd_functions+=(prompt_command_precmd_function) 
+function prompt_command_precmd_function() { history -a; history -c; history -r; } 
+precmd_functions+=(prompt_command_precmd_function)
