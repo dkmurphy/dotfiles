@@ -8,15 +8,26 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-## make CapsLock behave like Ctrl:
-#setxkbmap -option ctrl:nocaps
-## make short-pressed Ctrl behave like Escape if xcape installed:
-#command -v xcape >/dev/null 2>&1 && xcape -e 'Control_L=Escape'
-###
-# make CapsLock behave like Ctrl:
-setxkbmap -option 'caps:ctrl_modifier'
-# make short-pressed Ctrl behave like Escape if xcape installed:
-command -v xcape >/dev/null 2>&1 && xcape -e 'Caps_Lock=Escape'
+# from https://unix.stackexchange.com/questions/9605/how-can-i-detect-if-the-shell-is-controlled-from-ssh
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  SESSION_TYPE=remote/ssh
+else
+  case $(ps -o comm= -p $PPID) in
+    sshd|*/sshd) SESSION_TYPE=remote/ssh;;
+  esac
+fi
+
+if [ "$SESSION_TYPE" != "remote/ssh" ]; then
+  ## make CapsLock behave like Ctrl:
+  #setxkbmap -option ctrl:nocaps
+  ## make short-pressed Ctrl behave like Escape if xcape installed:
+  #command -v xcape >/dev/null 2>&1 && xcape -e 'Control_L=Escape'
+  ###
+  # make CapsLock behave like Ctrl:
+  setxkbmap -option 'caps:ctrl_modifier'
+  # make short-pressed Ctrl behave like Escape if xcape installed:
+  command -v xcape >/dev/null 2>&1 && xcape -e 'Caps_Lock=Escape'
+fi
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
