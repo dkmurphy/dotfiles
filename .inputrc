@@ -1,3 +1,6 @@
 # Set editing mode to emacs instead of vi
 # $ set -o vi
 set editing-mode emacs
+
+# include the usual inputrc
+$include /etc/inputrc
