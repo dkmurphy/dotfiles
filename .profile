@@ -23,10 +23,13 @@ if [ "$SESSION_TYPE" != "remote/ssh" ]; then
   ## make short-pressed Ctrl behave like Escape if xcape installed:
   #command -v xcape >/dev/null 2>&1 && xcape -e 'Control_L=Escape'
   ###
-  # make CapsLock behave like Ctrl:
-  setxkbmap -option 'caps:ctrl_modifier'
-  # make short-pressed Ctrl behave like Escape if xcape installed:
-  command -v xcape >/dev/null 2>&1 && xcape -e 'Caps_Lock=Escape'
+  ## make CapsLock behave like Ctrl:
+  #setxkbmap -option 'caps:ctrl_modifier'
+  ## make short-pressed Ctrl behave like Escape if xcape installed:
+  #command -v xcape >/dev/null 2>&1 && xcape -e 'Caps_Lock=Escape'
+  
+  # make CapsLock behave like Escape:
+  setxkbmap -option caps:escape
 fi
 
 # if running bash
