@@ -55,4 +55,8 @@ EOF
 # actually none of these are permanent so just going to use .bashrc
 
 
+# if want just caps lock to be escape (or could swap with setxkbmap -option caps:swapescape):
+setxkbmap -option caps:escape
+
+
 
